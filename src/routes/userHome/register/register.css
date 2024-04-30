@@ -1,0 +1,87 @@
+/* General Page Styling */
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh; 
+  padding: 2rem; /* Padding for navigation */
+}
+
+/* Register Box Styling */
+.register-box {
+  border-radius: 1rem;
+  border-color: #2a3b4c;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Shadow */
+  padding: 1rem; /* Padding */
+  max-width: 600px; 
+  background-color: rgb(245, 246, 253); /* Light background */
+ 
+}
+
+/* Title Styling */
+.register-box h1 {
+  font-size: 1.5rem; /* Reduced font size */
+  font-weight: 600; /* Bold */
+  margin-bottom: 1rem; /* Margin between elements */
+  text-align: center;
+  color: #2a3b4c; /* Dark steel blue */
+}
+
+/* Form Styling */
+.form-group {
+  margin-bottom: 1rem; /* Margin between form elements */
+}
+
+.form-group label {
+  font-size: 1rem; /* Font size for labels */
+  color: #4f5d75; /* Dark steel blue */
+  text-align: left; /* Align labels to the left */
+}
+
+.form-group input {
+  width: 100%; /* Full width */
+  height: 1.7rem; /* Height of input fields */
+  padding: 0.5rem; /* Padding inside the input */
+  border: 1px solid #cdd0d4; /* Border color */
+  border-radius: 0.5rem; /* Rounded corners */
+  transition: border-color 0.3s; /* Smooth transition */
+  margin-top: 0.5rem;
+}
+
+.form-group input:focus {
+  outline: none; /* No outline */
+  border-color: #2a3b4c; /* Darker border on focus */
+}
+
+/* Button Styling */
+.register-box button {
+  width: 100%; /* Full width */
+  height: 2.2rem; /* Height of the button */
+  background-color: #2a3b4c; /* Background color */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth hover transition */
+}
+
+.register-box button:hover {
+  background-color: #366e99; /* Darker color on hover */
+}
+
+/* Message Styling */
+.register-box p {
+  font-size: 0.875rem; /* Smaller font size */
+  color: #2a3b4c; /* Dark steel blue */
+  margin-top: 0.75rem; /* Margin at the top */
+}
+
+.register-box a {
+  font-weight: bold; /* Bold for links */
+  color: #4682b4; /* Steel blue */
+  text-decoration: none; /* No underline */
+}
+
+.register-box a:hover {
+  text-decoration: underline; /* Underline on hover */
+}

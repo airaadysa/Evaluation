@@ -1,0 +1,87 @@
+
+	/* Styling for the dashboard wrapper */
+	.dashboard-wrapper {
+	  padding: 20px; /* Provide padding */
+	  margin-top: 60px; /* Ensure it starts below the topbar */
+	}
+  
+	.greeting {
+	  font-size: 26px; /* Larger font for greeting */
+	  color: #000000; /* Blue color matching the theme */
+	  margin-bottom: 20px; /* Space between greeting and other sections */
+	}
+  
+	.quote {
+	  font-style: italic; /* Italicized quote */
+	  color: #555; /* Subtle color */
+	  margin-bottom: 20px; /* Space between quote and other content */
+	}
+  
+	.evaluation-box {
+	  background: #f8fafc; /* Light background */
+	  padding: 20px; /* Padding inside the box */
+	  border-radius: 10px; /* Rounded corners */
+	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+	  margin-bottom: 30px; /* Space below the box */
+	  text-align: center; /* Center content */
+	}
+  
+	.evaluate-button {
+	  background:#0050ac; /* Orange color for the button */
+	  color: white; /* White text on button */
+	  padding: 10px 20px; /* Padding for button */
+	  border-radius: 8px; /* Rounded corners */
+	  border: none; /* No border */
+	  cursor: pointer; /* Change cursor on hover */
+	  transition: all 0.3s ease; /* Smooth transition */
+	}
+  
+	.evaluate-button:hover {
+	  background: #e57a00; /* Darken on hover */
+	}
+  
+	.submitted-evaluations {
+	  margin-top: 20px; /* Space between sections */
+	}
+  
+	.evaluation-item {
+	  padding: 10px; /* Padding for list items */
+	  border-bottom: 1px solid #ddd; /* Light border for separation */
+	  transition: background 0.3s ease; /* Smooth transition */
+	}
+  
+	.evaluation-item:hover {
+	  background: #f1f5f9; /* Light background on hover */
+	}
+  
+	.news-announcements {
+	  margin-top: 30px; /* Space between sections */
+	}
+  
+	.news-item {
+	  padding: 10px; /* Padding for news items */
+	  border-bottom: 1px solid #ddd; /* Light border for separation */
+	}
+  
+	.resources {
+	  margin-top: 30px; /* Space between sections */
+	}
+  
+	.resources ul {
+	  list-style: none; /* Remove default list styles */
+	  padding: 0; /* No padding on the list */
+	}
+  
+	.resources li {
+	  margin-bottom: 10px; /* Spacing between list items */
+	}
+  
+	.resources a {
+	  color: #1e3a8a; /* Link color matching theme */
+	  text-decoration: none; /* No underline */
+	  transition: all 0.3s ease; /* Smooth transition */
+	}
+  
+	.resources a:hover {
+	  color: #f59e0b; 
+	}
