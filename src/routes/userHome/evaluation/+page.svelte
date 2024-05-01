@@ -1,116 +1,201 @@
 <script>
-    // You can define additional state or imported modules if needed here
+    // Define the available tabs
+    let tabs = [
+      'Class Administration',
+      'Character Building',
+      'Subject Preparation',
+      'Instructional Enrichment',
+      'Test and Measurement',
+      'Other Information'
+    ];
+  
+    // Track the active tab
+    let activeTab = 'Class Administration';
+  
+    // A variable to control the transition
+    let transitionDirection = 'left';
+  
+    // Function to set active tab and determine transition direction
+    function setActiveTab(tab) {
+      transitionDirection = tabs.indexOf(tab) > tabs.indexOf(activeTab) ? 'left' : 'right';
+      activeTab = tab;
+    }
   </script>
   
   <style>
-    /* Page styling */
-    .evaluation-page {
+    /* Styles for the page and tabs */
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+  
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
       padding: 20px;
-      background: #f8fafc;
     }
   
-    /* Section styling */
-    .evaluation-section {
-      margin-bottom: 30px;
-      border: 1px solid #e5e7eb; /* Light gray border */
-      border-radius: 5px;
-      padding: 15px;
-      background: #ffffff; /* White background */
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+      background-color: #ffffff;
+      box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.15), 0 6px 12px 0 rgba(0, 0, 0, 0.15);
+      padding: 10px;
+      border-radius: 30px;
+      overflow: hidden;
     }
   
-    .section-title {
-      font-size: 1.5rem;
-      color: #0050ac; /* Dark blue for section titles */
-      margin-bottom: 10px;
-      border-bottom: 2px solid #0050ac; /* Divider under the title */
-      padding-bottom: 5px;
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      font-size: 1.25rem;
+      font-weight: 500;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
   
-    /* List styling */
-    ul {
-      list-style-type: none;
-      padding-left: 0;
+    .tab:hover {
+      background: #3498db;
+      color: white;
     }
   
-    li {
+    .tab.active {
+      background: #2980b9;
+      color: white;
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+  
+    /* Transition animations */
+    .section {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      transition: all 0.5s ease-in-out;
+    }
+  
+    .slide-left {
+      animation: slide-in-left 0.5s ease-in-out;
+    }
+  
+    .slide-right {
+      animation: slide-in-right 0.5s ease-in-out;
+    }
+  
+    @keyframes slide-in-left {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+  
+    @keyframes slide-in-right {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+  
+    /* Custom radio styles for questions */
+    .question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+  
+    .radio-group {
+      display: flex;
+      gap: 15px;
+    }
+  
+    input[type="radio"] {
+      display: none; /* Hide the default radio button */
+    }
+  
+    .radio-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
       font-size: 1rem;
-      line-height: 1.5;
-      color: #1f2937; /* Dark gray for text */
+      font-weight: 500;
+      border-radius: 30px; /* Pill shape */
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+  
+    .radio-label-default {
+      background: #e6eef9;
+    }
+  
+    input[type="radio"]:checked + .radio-label {
+      background: #185ee0; /* Primary color when checked */
+      color: white; /* Text color when checked */
+    }
+  
+    .submit-button {
+      display: block;
+      background: #3498db;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s;
+      margin: 20px auto;
+    }
+  
+    .submit-button:hover {
+      background: #2980b9;
     }
   </style>
   
-  <!-- Main Evaluation Page Structure -->
-  <div class="evaluation-page">
+  <div class="container">
+    <!-- Tab Navigation -->
+    <div class="tabs">
+      {#each tabs as tab}
+        <div
+          class="tab {activeTab === tab ? 'active' : ''}"
+          on:click={() => setActiveTab(tab)}
+        >
+          {tab}
+        </div>
+      {/each}
+    </div>
+  
     <!-- Class Administration Section -->
-    <div class="evaluation-section">
-      <div class="section-title">Class Administration</div>
-      <ul>
-        <li>Provides integrated syllabus and properly explains policies and course content.</li>
-        <li>Attends virtual and/or in-person classes as scheduled.</li>
-        <li>Meets classes punctually.</li>
-        <li>Informs students in advance of absence or change of schedule.</li>
-        <li>Maintains a conducive learning environment.</li>
-        <li>Encourages and maintains classroom cleanliness, and protects classroom furniture, equipment, and facilities from vandalism and misuse.</li>
-      </ul>
-    </div>
+    {#if activeTab === 'Class Administration'}
+      <div class="section {transitionDirection === 'left' ? 'slide-left' : 'slide-right'}">
+        <h2>Class Administration</h2>
+        <div class="question">
+          <p>1. Provides integrated syllabus and properly explains policies and course content.</p>
+          <div class="radio-group">
+            <input type="radio" name="class_admin_1" id="always_1" />
+            <label class="radio-label radio-label-default" for="always_1">Always Evident</label>
   
-    <!-- Character Building Section -->
-    <div class="evaluation-section">
-      <div class="section-title">Character Building</div>
-      <ul>
-        <li>Well-groomed and properly attired even in virtual and/or in-person classes.</li>
-        <li>Radiates optimism and self-confidence.</li>
-        <li>Inspires students to achieve their goals and career ambitions.</li>
-        <li>Encourages students to improve their own personality and character.</li>
-        <li>Honest, transparent, and trustworthy in dealing with students.</li>
-        <li>Integrates moral and spiritual teachings in the subject taught.</li>
-      </ul>
-    </div>
+            <input type="radio" name="class_admin_1" id="sometimes_1" />
+            <label class="radio-label radio-label-default" for="sometimes_1">Sometimes Evident</label>
   
-    <!-- Subject Preparation and Analysis Section -->
-    <div class="evaluation-section">
-      <div class="section-title">Subject Preparation and Analysis</div>
-      <ul>
-        <li>Makes students feel at ease.</li>
-        <li>Speaks in a clear and audible voice.</li>
-        <li>Uses the language as a medium of instruction correctly.</li>
-        <li>Presents the subject matter in a clear, logical, and orderly manner.</li>
-        <li>Provides a holistic view of the subject matter by explaining its relationship to other academic disciplines and clarifying its significance with respect to human survival and development.</li>
-        <li>Gives relevant and challenging activities, homework, and term papers that encourage student initiative and creativity.</li>
-      </ul>
-    </div>
+            <input type="radio" name="class_admin_1" id="never_1" />
+            <label class="radio-label radio-label-default" for="never_1">Not Evident</label>
+          </div>
+        </div>
+        <!-- Additional questions here -->
+      </div>
+    {/if}
   
-    <!-- Instructional Enrichment Section -->
-    <div class="evaluation-section">
-      <div class="section-title">Instructional Enrichment</div>
-      <ul>
-        <li>Uses technology and other audio-visual materials suited for learning.</li>
-        <li>Prepares and punctually distributes required course references and instructional materials to students.</li>
-        <li>Uses up-to-date texts and reference books, magazines, journals, and other reading materials for lecture purposes.</li>
-        <li>Integrates e-Learning methods for classroom instruction, research, and reporting.</li>
-      </ul>
-    </div>
-  
-    <!-- Test and Measurement Section -->
-    <div class="evaluation-section">
-      <div class="section-title">Test and Measurement</div>
-      <ul>
-        <li>Uses and clearly explains the grading system.</li>
-        <li>Gives test questions and instructions that can be easily understood.</li>
-        <li>Gives test questions and coursework relevant to the syllabus.</li>
-        <li>Promptly returns corrected test papers and other student outputs.</li>
-        <li>Discusses the results of tests and advises students on how to improve their performance.</li>
-      </ul>
-    </div>
-  
-    <!-- Other Information Section -->
-    <div class="evaluation-section">
-      <div class="section-title">Other Information</div>
-      <ul>
-        <li>Encourages student participation, initiative, and creativity in class activities.</li>
-        <li>Individualizes instruction as needed.</li>
-        <li>Uses innovative and effective teaching methods.</li>
-      </ul>
-    </div>
+    <!-- Other sections, add more questions as needed -->
   </div>
   
