@@ -1,89 +1,80 @@
-/* General Page Styling */
 .login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 85vh; /* Adjusted height to fit navigation bar */
-    padding-top: 2rem; /* Space for a navigation bar */
-  }
-  
-  /* Login Box Styling */
-  .login-box {
-    border-radius: 1rem;
-    border-color: #2a3b4c;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    padding: 2rem; /* Padding around the box */
-    max-width: 400px; /* Ensures the form doesn't cause overflow */
-    background-color: rgb(245, 246, 253);
-  }
-  
-  /* Title Styling */
-  .login-box h1 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #2a3b4c; /* Darker steel blue */
-  }
-  
-  /* Form Styling */
-  .form-group {
-    margin-bottom: 1rem; /* Spacing between form elements */
-  }
-  
-  .form-group label {
-    font-size: 1rem;
-    color: #4f5d75; /* Mid-tone steel blue */
-    text-align: left; /* Align labels to the left */
-  
-  }
-  
-  .form-group input {
-    width: 100%; /* Full width */
-    height: 1.7rem; /* Standard height */
-    padding: 0.5rem; /* Padding inside the input */
-    border: 1px solid #cdd0d4;
-    border-radius: 0.5rem; /* Rounded corners */
-    margin-top: 0.5rem;
-    transition: border-color 0.3s; /* Smooth transition for hover/focus */
-  }
-  
-  .form-group input:focus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  padding-top: 2rem;
+}
 
-    outline: #2a3b4c;
-  }
-  
-  /* Button Styling */
-  .login-box button {
-    width: 105.5%; /* Full width to match textboxes */
-    height: 2.7rem; /* Same height as inputs */
-    background-color: #2f6cc9; /* Steel blue */
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    margin-top: 0.5rem;
-    transition: background-color 0.3s; /* Smooth hover transition */
-  }
-  
-  .login-box button:hover {
-    background-color: #366e99; /* Darker steel blue on hover */
-  }
-  
-  /* Message Styling */
-  .login-box p {
-    font-size: 0.875rem;
-    color: #2a3b4c; /* Darker steel blue */
-    margin-top: 1rem; /* Space after the form */
-  }
-  
-  .login-box a {
-    font-weight: bold;
-    color: #4682b4; /* Steel blue for links */
-    text-decoration: none;
-  }
-  
-  .login-box a:hover {
-    text-decoration: underline; /* Underline on hover */
-  }
-  
+.login-box {
+  border-radius: 1rem;
+  border-color: #2a3b4c;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  max-width: 400px;
+  background-color: rgb(245, 246, 253);
+}
+
+.login-box h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #2a3b4c;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #4f5d75;
+  text-align: left;
+}
+
+.form-group input {
+  width: 100%;
+  height: 1.7rem;
+  padding: 0.5rem;
+  border: 1px solid #cdd0d4;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: #2a3b4c;
+}
+
+.login-box button {
+  width: 105.5%;
+  height: 2.7rem;
+  background-color: #2f6cc9;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.login-box button:hover {
+  background-color: #366e99;
+}
+
+.login-box p {
+  font-size: 0.875rem;
+  color: #2a3b4c;
+  margin-top: 1rem;
+}
+
+.login-box a {
+  font-weight: bold;
+  color: #4682b4;
+  text-decoration: none;
+}
+
+.login-box a:hover {
+  text-decoration: underline;
+}

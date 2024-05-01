@@ -10,7 +10,7 @@
     let selectedDepartment = '';
   
     function startEvaluation() {
-      // Redirect to the evaluation form with selected parameters
+     
       const evaluationURL = `/evaluation?person=${selectedTeacher}&course=${selectedCourse}&department=${selectedDepartment}`;
       window.location.href = '/userHome/evaluationForm';
     }
@@ -21,15 +21,14 @@
       max-width: 500px;
       margin: 0 auto;
       padding: 20px;
-    }
-  
-    .selection-container {
-        margin-top: 80px;
-      padding: 20px;
+      margin-top: 80px;
+    
       border-radius: 10px;
       background-color: #ffffff;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
     }
+   
+        
   
     h2 {
       margin-top: 0;
@@ -76,15 +75,10 @@
   <Sidebar/>
   <Topbar/>
   
-  <div class="container">
-    <!-- Top Navigation Bar -->
-    <div class="top-nav">
-      <!-- Your top navigation content goes here -->
-      
-    </div>
+
   
-    <!-- Selection Container -->
-    <div class="selection-container">
+  
+    <div class="container">
       <h2></h2>
   
       <label for="teacher">Select Teacher to Evaluate:</label>
@@ -113,5 +107,5 @@
   
       <button on:click={startEvaluation}>Start Evaluation</button>
     </div>
-  </div>
+  
   

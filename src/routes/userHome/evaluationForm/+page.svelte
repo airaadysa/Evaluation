@@ -21,28 +21,26 @@
   }
 
   function goToNextTab() {
-  const currentIndex = tabs.indexOf(activeTab);
-  if (currentIndex < tabs.length - 1) {
-    setActiveTab(tabs[currentIndex + 1]);
-    window.location.href = '#'; // Redirect to default URL
+    const currentIndex = tabs.indexOf(activeTab);
+    if (currentIndex < tabs.length - 1) {
+      setActiveTab(tabs[currentIndex + 1]);
+      window.location.href = '#';
+    }
   }
-}
 
-function goToPreviousTab() {
-  const currentIndex = tabs.indexOf(activeTab);
-  if (currentIndex > 0) {
-    setActiveTab(tabs[currentIndex - 1]);
-    window.location.href = '#'; // Redirect to default URL
+  function goToPreviousTab() {
+    const currentIndex = tabs.indexOf(activeTab);
+    if (currentIndex > 0) {
+      setActiveTab(tabs[currentIndex - 1]);
+      window.location.href = '#';
+    }
   }
-}
-
 
   function isLastTab() {
     return activeTab === tabs[tabs.length - 1];
   }
 
   function submitForm() {
-    // Define the functionality for form submission here
     console.log("Form submitted!");
   }
 </script>
@@ -50,20 +48,18 @@ function goToPreviousTab() {
 <Topbar />
 <Sidebar />
 
-<!-- Tab Navigation -->
 <div class="tabs">
   {#each tabs as tab (tab)}
   <div
     class="tab {activeTab === tab ? 'active' : ''}"
     on:click={() => setActiveTab(tab)}
-    >
-      {tab}
-    </div>
+  >
+    {tab}
+  </div>
   {/each}
   <div class="tab-glider" style="transform: translateX({tabs.indexOf(activeTab) * 100}%)"></div>
 </div>
 
-<!-- Content Sections with smooth transitions -->
 <div class="content-container">
   {#if activeTab === 'Class Administration'}
     <div class="section {transitionDirection === 'left' ? 'slide-left' : 'slide-right'}">
@@ -83,7 +79,7 @@ function goToPreviousTab() {
           <div class="radio-group">
             {#each ['Always Evident', 'Sometimes Evident', 'Not Evident'] as label}
               <label class="radio-label">
-                <input type="radio" name={`class_admin_${index}`} />
+                <input type="radio" name={`class_admin_{index}`} />
                 <span class="radio-text">{label}</span>
               </label>
             {/each}
@@ -111,7 +107,7 @@ function goToPreviousTab() {
           <div class="radio-group">
             {#each ['Always Evident', 'Sometimes Evident', 'Not Evident'] as label}
               <label class="radio-label">
-                <input type="radio" name={`character_${index}`} />
+                <input type="radio" name={`character_{index}`} />
                 <span class="radio-text">{label}</span>
               </label>
             {/each}
@@ -139,7 +135,7 @@ function goToPreviousTab() {
           <div class="radio-group">
             {#each ['Always Evident', 'Sometimes Evident', 'Not Evident'] as label}
               <label class="radio-label">
-                <input type="radio" name={`subject_${index}`} />
+                <input type="radio" name={`subject_{index}`} />
                 <span class="radio-text">{label}</span>
               </label>
             {/each}
@@ -165,7 +161,7 @@ function goToPreviousTab() {
           <div class="radio-group">
             {#each ['Always Evident', 'Sometimes Evident', 'Not Evident'] as label}
               <label class="radio-label">
-                <input type="radio" name={`instruction_${index}`} />
+                <input type="radio" name={`instruction_{index}`} />
                 <span class="radio-text">{label}</span>
               </label>
             {/each}
@@ -192,7 +188,7 @@ function goToPreviousTab() {
           <div class="radio-group">
             {#each ['Always Evident', 'Sometimes Evident', 'Not Evident'] as label}
               <label class="radio-label">
-                <input type="radio" name={`test_${index}`} />
+                <input type="radio" name={`test_{index}`} />
                 <span class="radio-text">{label}</span>
               </label>
             {/each}
@@ -209,19 +205,19 @@ function goToPreviousTab() {
         "Encourages student participation, initiative, and creativity in class activities.",
         "Individualizes instruction as needed.",
         "Uses innovative and effective teaching methods.",
-        "Comments/Feedback" // Additional question for comments/feedback
+        "Comments/Feedback"
       ] as question, index (question)}
         <div class="question-container">
           <div class="question">
             <span class="question-number">{index + 1}.</span> <span class="question-content">{question}</span>
           </div>
           <div class="radio-group">
-            {#if index === 3} <!-- Adding a text area for comments/feedback -->
+            {#if index === 3}
               <textarea class="comment-input" rows="4" cols="50" placeholder="Enter your comments or feedback"></textarea>
             {:else}
               {#each ['Always Evident', 'Sometimes Evident', 'Not Evident'] as label}
                 <label class="radio-label">
-                  <input type="radio" name={`other_${index}`} />
+                  <input type="radio" name={`other_{index}`} />
                   <span class="radio-text">{label}</span>
                 </label>
               {/each}
@@ -236,13 +232,11 @@ function goToPreviousTab() {
     <button class="back-button" on:click={goToPreviousTab}>Back</button>
   {/if}
   
- 
   {#if activeTab !== 'Other Information'}
     <button class="next-button" on:click={goToNextTab}>Next</button>
   {/if}
 
   {#if isLastTab() && activeTab === 'Other Information'}
-  <button on:click={submitForm} class="submit-button">Submit</button>
-{/if}
-  
+    <button on:click={submitForm} class="submit-button">Submit</button>
+  {/if}
 </div>

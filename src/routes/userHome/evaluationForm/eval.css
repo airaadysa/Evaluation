@@ -1,4 +1,3 @@
-
 body {
   font-family: "Arial", sans-serif;
   background-color: #f5f7fa;
@@ -20,14 +19,12 @@ body {
   background-color: #ffffff;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.15), 0 6px 12px 0 rgba(0, 0, 0, 0.15);
   padding: 7px;
- 
-  
 }
 
 .tab {
   flex: 1;
   text-align: center;
-  padding: 10px; 
+  padding: 10px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -49,15 +46,11 @@ body {
 .tab-glider {
   position: absolute;
   height: 4px;
-  width: calc(100% / 6); 
+  width: calc(100% / 6);
   background-color: #2980b9;
   transition: transform 0.3s ease;
   bottom: 0;
   left: 0;
-}
-
-.content-container {
-  overflow: hidden;
 }
 
 .section {
@@ -96,15 +89,15 @@ body {
 
 .question-container {
   display: flex;
-  justify-content: space-between; /* Align items in the question container */
-  border: 1px solid #ccc; /* Add border for better readability */
-  border-radius: 10px; /* Rounded corners */
-  padding: 15px; /* Padding for spacing */
-  margin-bottom: 15px; /* Margin between questions */
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
 }
 
 .question {
-  width: 50%; /* Fixed width for the question text */
+  width: 50%;
 }
 
 .question-number {
@@ -112,13 +105,13 @@ body {
 }
 
 .question-content {
-  margin-left: 10px; /* Margin between question number and content */
+  margin-left: 10px;
 }
 
 .radio-group {
-  width: 50%; /* Fixed width for the radio group */
-  display:inline;
-  align-items:end; /* Center radio buttons vertically */
+  width: 50%;
+  display: inline;
+  align-items: end;
 }
 
 .radio-label {
@@ -131,17 +124,18 @@ body {
 }
 
 .radio-text {
-  white-space: nowrap; /* Prevents wrapping of radio button labels */
+  white-space: nowrap;
 }
+
 .back-button {
   background-color: #0050ac;
   color: white;
   border: none;
-  padding: 15px 30px; /* Adjust padding to make it bigger */
+  padding: 15px 30px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  float: left; /* Position on the right */
-  margin-top: 20px; /* Add some space from the top */
+  float: left;
+  margin-top: 20px;
 }
 
 .back-button:hover {
@@ -152,29 +146,29 @@ body {
   background-color: #0050ac;
   color: white;
   border: none;
-  padding: 15px 30px; /* Adjust padding to make it bigger */
+  padding: 15px 30px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  float: right; /* Position on the right */
-  margin-top: 20px; /* Add some space from the top */
+  float: right;
+  margin-top: 20px;
 }
 
 .next-button:hover {
   background-color: darkblue;
 }
+
 .submit-button {
-  /* Custom styles for the "Submit" button */
   background-color: #0050ac;
   color: white;
   border: none;
-  padding: 15px 30px; /* Adjust padding to make it bigger */
+  padding: 15px 30px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  float: right; /* Position on the right */
-  margin-top: 20px; /* Add some space from the top */
+  float: right;
+  margin-top: 20px;
 }
 
 .submit-button:hover {
   background-color: darkblue;
 }
-
+  
