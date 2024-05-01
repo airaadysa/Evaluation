@@ -76,11 +76,13 @@
                   bind:value={password}
               />
           </div>
+          <a href="/studentAuth/login">
           <button type="submit">Register</button> <!-- Submit button -->
+        </a>
       </form>
 
       <p> <!-- Link to the login page -->
-          Already have an account? <a href="/userHome/login">Login</a>
+          Already have an account? <a href="/studentAuth/login">Login</a>
       </p>
   </div>
 </div>

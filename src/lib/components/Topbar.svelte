@@ -16,6 +16,7 @@ html, body {
 
 /* Styling for the top bar */
 .top-bar {
+  position: fixed;
   display: flex;
   justify-content: center; /* Center content */
   align-items: center; /* Align items vertically */

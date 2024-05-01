@@ -29,43 +29,44 @@
 
   /* Hamburger styling */
   .hamburger-container {
-    position: fixed;
-    top: 9px; /* Adjusted for better visibility */
-    left: 20px;
-    z-index: 100; /* Above the sidebar and the top bar */
-    cursor: pointer;
-    padding: 12px; /* Padding for the clickable area */
-    background: rgb(255, 255, 255); /* Default background */
-    border-radius: 50%; /* Circular shape */
-  }
-
-  .hamburger-container.white {
-    background: #01418a; /* Dark blue when sidebar is visible */
-  }
-
-  .hamburger {
-    position: relative;
-    width: 20px; /* Width of the hamburger */
-    height: 17px; /* Total height for 3 lines */
-    display: inline-block;
-  }
-
-  .hamburger span {
-    display: block; /* Ensure block display for visibility */
-    width: 20px; /* Width of each line */
-    height: 2px; /* Height of each line */
-    background: #0c3762; /* Default line color */
-    margin-bottom: 6px; /* Margin between lines */
-    transition: background 0.3s ease; /* Transition for line color */
-  }
-
-  .hamburger span:last-child {
-    margin-bottom: 0; /* No extra space after the last line */
-  }
-
-  .hamburger-container.white .hamburger span {
-    background: #f8fafc; /* White lines when sidebar is visible */
-  }
+      position: fixed;
+      top: 9px; /* Adjusted for better visibility */
+      right: 20px; /* Align to the right */
+      z-index: 100; /* Above the sidebar and the top bar */
+      cursor: pointer;
+      padding: 12px; /* Padding for the clickable area */
+      background: rgb(255, 255, 255); /* Default background */
+      border-radius: 50%; /* Circular shape */
+    }
+  
+    .hamburger-container.white {
+      background: #01418a; /* Dark blue when sidebar is visible */
+    }
+  
+    .hamburger {
+      position: relative;
+      width: 20px; /* Width of the hamburger */
+      height: 17px; /* Total height for 3 lines */
+      display: inline-block;
+    }
+  
+    .hamburger span {
+      display: block; /* Ensure block display for visibility */
+      width: 20px; /* Width of each line */
+      height: 2px; /* Height of each line */
+      background: #0c3762; /* Default line color */
+      margin-bottom: 6px; /* Margin between lines */
+      transition: background 0.3s ease; /* Transition for line color */
+    }
+  
+    .hamburger span:last-child {
+      margin-bottom: 0; /* No extra space after the last line */
+    }
+  
+    .hamburger-container.white .hamburger span {
+      background: #f8fafc; /* White lines when sidebar is visible */
+    }
+  
 
   /* Sidebar item styling */
   /* Sidebar item styling */
@@ -119,26 +120,21 @@
   <div class={`sidebar ${sidebarVisible ? 'visible' : ''}`}>
     <ul>
       <li>
-        <a href="/home">
+        <a href="/userHome/dashboard">
           <span class="icon">🏠</span> Home
         </a>
       </li>
       <li>
-        <a href="/evaluation">
+        <a href="/userHome/evaluation">
           <span class="icon">📝</span> Evaluation
         </a>
       </li>
       <li>
         <a href="/reports">
-          <span class="icon">📊</span> Reports
+          <span class="icon">📊</span> Classes
         </a>
       </li>
-      <li>
-        <a href="/settings">
-          <span class="icon">⚙️</span> Settings
-        </a>
-      </li>
-    
+      
       <li>
         <a href="/contact">
           <span class="icon">📞</span> Contact

@@ -1,5 +1,5 @@
 <script>
-	import Topbar from '$lib/components/student/Topbar.svelte'; // Importing the topbar
+	import Topbar from '$lib/components/Topbar.svelte'; // Importing the topbar
 	import Sidebar from '$lib/components/student/Sidebar.svelte'; // Importing the sidebar
 	import './studDash.css'
   
@@ -7,8 +7,7 @@
 
 	
 	function evaluateTeacher() {
-	  // Trigger evaluation form or process
-	  alert("Evaluation form will open"); // Placeholder for evaluation action
+	  window.location.href= '/userHome/evaluation';
 	}
   </script>
   

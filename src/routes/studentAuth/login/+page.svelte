@@ -1,10 +1,10 @@
 <script>
     import './login.css';
-	import Sidebar from '$lib/components/student/Topbar.svelte';
-	import Topbar from '$lib/components/student/Topbar.svelte';
+	import Sidebar from '$lib/components/Topbar.svelte';
+	import Topbar from '$lib/components/Topbar.svelte';
 
   </script>
-  <Topbar/>
+  
 	
   
   <svelte:head>
@@ -23,10 +23,12 @@
           <label for="password">Password</label>
           <input type="password" name="password" id="password" placeholder="Password" />
         </div>
+        <a href="/userHome/dashboard">
         <button type="submit">Login</button>
+        </a>
       </form>
       <p>
-        Don't have an account yet? <a href="/userHome/register">Sign up</a>
+        Don't have an account yet? <a href="/studentAuth/register">Sign up</a>
       </p>
     </div>
   </div>
