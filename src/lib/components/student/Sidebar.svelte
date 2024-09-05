@@ -100,6 +100,8 @@
   <div
     class={`hamburger-container ${sidebarVisible ? 'white' : ''}`}
     on:click={toggleSidebar}
+    aria-expanded={sidebarVisible}
+    aria-controls="sidebar"
   >
     <div class="hamburger">
       <span></span>
@@ -108,7 +110,7 @@
     </div>
   </div>
 
-  <div class={`sidebar ${sidebarVisible ? 'visible' : ''}`}>
+  <div id="sidebar" class={`sidebar ${sidebarVisible ? 'visible' : ''}`} role="navigation">
     <ul>
       <li>
         <a href="/userHome/dashboard">

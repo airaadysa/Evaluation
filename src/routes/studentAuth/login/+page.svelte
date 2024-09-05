@@ -1,7 +1,7 @@
 <script>
     import './login.css';
-	import Sidebar from '$lib/components/Topbar.svelte';
-	import Topbar from '$lib/components/Topbar.svelte';
+	import Sidebar from '$lib/components/common/Topbar.svelte';
+	import Topbar from '$lib/components/common/Topbar.svelte';
 
   </script>
   
