@@ -4,17 +4,24 @@
   import { goto } from '$app/navigation';
 
   let teachers = [
-    { id: 1, name: 'Teacher 1' },
-    { id: 2, name: 'Teacher 2' },
-    { id: 3, name: 'Teacher 3' }
+    { id: 1, name: 'Teacher 1', subject: 'Mathematics' },
+    { id: 2, name: 'Teacher 2', subject: 'Science' },
+    { id: 3, name: 'Teacher 3', subject: 'History' },
+    { id: 4, name: 'Teacher 4', subject: 'English' },
+    { id: 5, name: 'Teacher 5', subject: 'Art' }
   ];
 
   let selectedTeachers = [];
 
   function toggleTeacher(teacherId) {
     const index = selectedTeachers.indexOf(teacherId);
+
     if (index === -1) {
-      selectedTeachers = [...selectedTeachers, teacherId];
+      if (selectedTeachers.length < 3) {
+        selectedTeachers = [...selectedTeachers, teacherId];
+      } else {
+        alert("You can only select a maximum of 3 teachers.");
+      }
     } else {
       selectedTeachers = selectedTeachers.filter(id => id !== teacherId);
     }
@@ -35,53 +42,116 @@
 <Sidebar />
 
 <div class="container">
-  <h1>Select Teachers to Evaluate</h1>
-  <ul>
+  <div class="header">
+    <h1>Select Teachers and Subjects to Evaluate</h1>
+    <p>Please choose up to 3 teachers and their respective subjects you would like to evaluate.</p>
+  </div>
+  
+  <div class="teacher-list">
     {#each teachers as teacher}
-      <li>
-        <label>
+      <div class="teacher-item">
+        <label class="teacher-label">
           <input
             type="checkbox"
             value={teacher.id}
             on:change={() => toggleTeacher(teacher.id)}
+            disabled={selectedTeachers.length >= 3 && selectedTeachers.indexOf(teacher.id) === -1}
           />
-          {teacher.name}
+          <span class="teacher-info">
+            {teacher.name} - <span class="subject">{teacher.subject}</span>
+          </span>
         </label>
-      </li>
+      </div>
     {/each}
-  </ul>
-  <button on:click={proceedToEvaluation}>Proceed to Evaluation</button>
+  </div>
+  
+  <div class="actions">
+    <button on:click={proceedToEvaluation} class="proceed-btn">
+      Proceed to Evaluation
+    </button>
+  </div>
 </div>
 
 <style>
+  /* General Container */
   .container {
     padding: 20px;
+    background-color: #f8f9fa;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    color: #343a40;
   }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    margin: 10px 0;
-  }
-
-  button {
-    padding: 10px 20px;
+  p {
     font-size: 1rem;
-    background-color: #007bff;
+    color: #6c757d;
+  }
+
+  /* Teacher List */
+  .teacher-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .teacher-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .teacher-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .teacher-label {
+    display: flex;
+    align-items: center;
+  }
+
+  .teacher-info {
+    margin-left: 10px;
+    font-size: 1.2rem;
+    color: #495057;
+  }
+
+  .subject {
+    color: #007bff;
+  }
+
+  /* Actions */
+  .actions {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .proceed-btn {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
   }
 
-  button:hover {
-    background-color: #0056b3;
+  .proceed-btn:hover {
+    background-color: #218838;
   }
 </style>

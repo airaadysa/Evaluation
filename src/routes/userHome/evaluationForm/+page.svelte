@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 <script>
   import Topbar from '$lib/components/common/Topbar.svelte';
   import Sidebar from '$lib/components/student/Sidebar.svelte';
@@ -15,31 +13,25 @@
   ];
 
   let activeTab = 'Class Administration';
-  let transitionDirection = 'left';
   let isSubmitting = false;
   let alertMessage = '';
 
   function setActiveTab(tab) {
-    transitionDirection = tabs.indexOf(tab) > tabs.indexOf(activeTab) ? 'left' : 'right';
     activeTab = tab;
   }
 
-  function goToNextTab() {
+  function nextTab() {
     const currentIndex = tabs.indexOf(activeTab);
     if (currentIndex < tabs.length - 1) {
-      setActiveTab(tabs[currentIndex + 1]);
+      activeTab = tabs[currentIndex + 1];
     }
   }
 
-  function goToPreviousTab() {
+  function previousTab() {
     const currentIndex = tabs.indexOf(activeTab);
     if (currentIndex > 0) {
-      setActiveTab(tabs[currentIndex - 1]);
+      activeTab = tabs[currentIndex - 1];
     }
-  }
-
-  function isLastTab() {
-    return activeTab === tabs[tabs.length - 1];
   }
 
   function submitForm() {
@@ -104,70 +96,74 @@
 
 <div class="tabs">
   {#each tabs as tab (tab)}
-  <div
-    class="tab {activeTab === tab ? 'active' : ''}"
-    on:click={() => setActiveTab(tab)}
-  >
-    {tab}
-  </div>
-  {/each}
-  <div class="tab-glider" style="transform: translateX({tabs.indexOf(activeTab) * 100}%)"></div>
-</div>
-
-<div class="content-container">
-  {#if activeTab}
-    <div class="section {transitionDirection === 'left' ? 'slide-left' : 'slide-right'}">
-      <h2>{activeTab}</h2>
-      <table class="evaluation-table">
-        <thead>
-          <tr>
-            <th>Question</th>
-            {#each [1, 2, 3] as teacher (teacher)}
-              <th>Teacher {teacher}</th>
-            {/each}
-          </tr>
-        </thead>
-        <tbody>
-          {#each questions[activeTab] as question, index (question)}
-            <tr>
-              <td>{index + 1}. {question}</td>
-              {#each [1, 2, 3] as teacher (teacher)}
-                <td>
-                  {#if activeTab === 'Other Information' && index === 3}
-                    <textarea class="comment-input" rows="4" cols="50" placeholder="Enter your comments or feedback"></textarea>
-                  {:else}
-                    {#each labels as label (label)}
-                      <label class="radio-label">
-                        <input type="radio" name={`question_${index}_teacher_${teacher}`} value={label} />
-                        <span class="radio-text">{label}</span>
-                      </label>
-                    {/each}
-                  {/if}
-                </td>
-              {/each}
-            </tr>
-          {/each}
-        </tbody>
-      </table>
+    <div class="tab {activeTab === tab ? 'active' : ''}" on:click={() => setActiveTab(tab)}>
+      {tab}
     </div>
-  {/if}
-
-  {#if alertMessage}
-    <div class="confirmation-message">{alertMessage}</div>
-  {/if}
-
-  {#if activeTab !== 'Class Administration'}
-    <button class="back-button" on:click={goToPreviousTab}>Back</button>
-  {/if}
-  
-  {#if activeTab !== 'Other Information'}
-    <button class="next-button" on:click={goToNextTab}>Next</button>
-  {/if}
-
-  {#if isLastTab() && activeTab === 'Other Information'}
-    <button on:click={submitForm} class="submit-button">Submit</button>
-  {/if}
+  {/each}
 </div>
+
+<div class="tables-container">
+  <table class="questions-table">
+    <thead>
+      <tr>
+        <th>Question</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each questions[activeTab] as question, index (question)}
+        <tr>
+          <td>{index + 1}. {question}</td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+
+  <table class="teachers-table">
+    <thead>
+      <tr>
+        {#each [1, 2, 3] as teacher (teacher)}
+          <th>Teacher {teacher}</th>
+        {/each}
+      </tr>
+    </thead>
+    <tbody>
+      {#each questions[activeTab] as question, index (question)}
+        <tr>
+          {#each [1, 2, 3] as teacher (teacher)}
+            <td>
+              {#if activeTab === 'Other Information' && index === 3}
+                <textarea class="comment-input" rows="4" cols="50" placeholder="Enter your comments or feedback"></textarea>
+              {:else}
+                {#each labels as label (label)}
+                  <label class="radio-label">
+                    <input type="radio" name={`question_${index}_teacher_${teacher}`} value={label} />
+                    <span class="radio-text">{label}</span>
+                  </label>
+                {/each}
+              {/if}
+            </td>
+          {/each}
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+</div>
+
+{#if alertMessage}
+  <div class="confirmation-message">{alertMessage}</div>
+{/if}
+
+{#if tabs.indexOf(activeTab) > 0}
+  <button class="back-button" on:click={previousTab}>Back</button>
+{/if}
+
+{#if tabs.indexOf(activeTab) < tabs.length - 1}
+  <button class="next-button" on:click={nextTab}>Next</button>
+{/if}
+
+{#if activeTab === 'Other Information'}
+  <button on:click={submitForm} class="submit-button">Submit</button>
+{/if}
 
 {#if isSubmitting}
   <div class="loading-overlay">
@@ -176,19 +172,24 @@
 {/if}
 
 <style>
-  /* General Styles */
   .tabs {
     display: flex;
     overflow: hidden;
-    position: relative;
+    position: sticky;
+    top: 60px; 
+    z-index: 999; 
+    background-color: white; 
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
   }
 
   .tab {
     cursor: pointer;
-    padding: 10px 20px;
-    margin-right: 5px;
+    padding: 5px 10px;
+    margin-right: 1px;
     background: #f0f0f0;
     border-radius: 5px;
+    margin-bottom: 20px;
   }
 
   .tab.active {
@@ -196,63 +197,35 @@
     color: white;
   }
 
-  .tab-glider {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background: #007bff;
-    transition: transform 0.3s ease;
+  .tables-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10890px;
+    margin-left: 200px;
+    width: 80%;
+   
   }
 
-  .section {
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
-
-  .slide-left {
-    animation: slideInLeft 0.5s forwards;
-  }
-
-  .slide-right {
-    animation: slideInRight 0.5s forwards;
-  }
-
-  @keyframes slideInLeft {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
-  }
-
-  @keyframes slideInRight {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
-  }
-
-  .evaluation-table {
-    width: 100%;
+  table {
+    width: 50%; 
     border-collapse: collapse;
+    margin: 0 auto;
   }
 
-  .evaluation-table th,
-  .evaluation-table td {
-    padding: 10px;
+  th, td {
     border: 1px solid #ddd;
-    text-align: center;
+    padding: 5px;
+    text-align: left;
+    vertical-align: middle;
   }
 
-  .evaluation-table thead th {
-    background: #f0f0f0;
+  th {
+    background-color: #f8f8f8;
   }
 
   .radio-label {
-    display: flex;
-    align-items: center;
-  }
-
-  .radio-text {
-    margin-left: 5px;
+    display: block;
+    margin: 5px 0;
   }
 
   .comment-input {
@@ -260,27 +233,14 @@
     box-sizing: border-box;
   }
 
-  .back-button,
-  .next-button,
   .submit-button {
-    margin: 10px 5px;
+    margin-top: 20px;
     padding: 10px 20px;
+    background: #28a745;
+    color: white;
     border: none;
     border-radius: 5px;
-    color: white;
     cursor: pointer;
-  }
-
-  .back-button {
-    background: #6c757d;
-  }
-
-  .next-button {
-    background: #007bff;
-  }
-
-  .submit-button {
-    background: #28a745;
   }
 
   .loading-overlay {
@@ -306,41 +266,31 @@
   }
 
   @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .confirmation-message {
-    color: #008000;
-    font-size: 1rem;
-    text-align: center;
+    margin-top: 10px;
+    color: #28a745;
+  }
+
+  td, th {
+    height: 100px; 
+  }
+
+  .back-button, .next-button {
     margin-top: 20px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
 
-  .form-help-text {
-    color: red;
-    font-size: 0.875rem;
-  }
-
-  .question-container {
-    margin-bottom: 15px;
-  }
-
-  .question {
-    font-weight: bold;
-  }
-
-  .radio-group {
-    display: flex;
-    gap: 10px;
-    margin-top: 5px;
-  }
-
-  .question-number {
-    font-weight: bold;
-    margin-right: 5px;
-  }
-
-  .question-content {
-    display: inline;
+  .back-button {
+    margin-right: 10px;
   }
 </style>
